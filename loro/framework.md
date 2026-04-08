@@ -127,7 +127,7 @@ MoLoRA on Qwen3-1.7B exceeds Qwen3-8B across four reasoning benchmarks while bei
 
 ## The TRM Connection
 
-The CogOS TRM applies the Tiny Recursive Model technique ([Jolicoeur-Martineau 2024](https://arxiv.org/abs/2510.04871)) using a Mamba SSM backbone instead of the original paper's attention-based architecture. The result is a 2.28M-parameter model (D_STATE=4, N_LAYERS=2, EXPAND_FACTOR=1) that maintains a "light cone" -- a compressed hidden state representing the observer's trajectory through the workspace. The Mamba SSM choice is deliberate: its O(1) state update and persistent hidden state naturally track temporal evolution, whereas an attention-based TRM would need to re-attend to the full history each cycle. The SSM state IS the compressed history.
+The CogOS TRM applies the Tiny Recursive Model technique ([Jolicoeur-Martineau 2024](https://arxiv.org/abs/2510.04871)) using a Mamba SSM (Selective State Space Model) backbone instead of the original paper's attention-based architecture. The result is a 2.28M-parameter model (D_STATE=4, N_LAYERS=2, EXPAND_FACTOR=1) that maintains a "light cone" -- a compressed hidden state representing the observer's trajectory through the workspace. The Mamba SSM choice is deliberate: its O(1) state update and persistent hidden state naturally track temporal evolution, whereas an attention-based TRM would need to re-attend to the full history each cycle. The SSM state IS the compressed history.
 
 ```
 PLE:       token_id  -> lookup_table -> 256-dim conditioning -> gates layer behavior

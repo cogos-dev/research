@@ -35,6 +35,7 @@ This is public architecture research related to CogOS. It does not contain the f
 - [skills](https://github.com/cogos-dev/skills) -- Plugin marketplace — Agent Skills across workflow, research, voice, and dev tools
 - [charts](https://github.com/cogos-dev/charts) -- Deployment — Helm charts + Docker Compose
 - [desktop](https://github.com/cogos-dev/desktop) -- Native macOS app — kernel management, terminal, dashboard
+- [openclaw-plugin](https://github.com/cogos-dev/openclaw-plugin) -- OpenClaw integration (how it CONNECTS)
 
 ## License
 
