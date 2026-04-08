@@ -6,13 +6,11 @@
 
 Quality of a cognitive system's output is a function of its **boundary quality**, not its model size. If you assemble the right context with the right conditioning signals, a 4B model on a phone produces quality comparable to a 100B+ model in a standard agent loop — because the cognitive overhead is externalized into the substrate rather than consumed as tokens.
 
-This is a testable, falsifiable claim. The evidence is both theoretical (information-theoretic arguments about where cognitive work actually happens) and empirical (TRM scoring at D_STATE=4 achieving NDCG 0.900 on context selection).
+This is a testable, falsifiable claim. The evidence is both theoretical (information-theoretic arguments about where cognitive work actually happens) and empirical (a Tiny Recursive Model (TRM) — a 2.28M-parameter Mamba SSM — scoring context relevance at D_STATE=4 with preliminary NDCG around 0.9 on workspace context selection).
 
 ## The Holographic Principle for Cognitive Systems
 
-In physics, the Bekenstein-Hawking bound tells us the information content of a volume is proportional to its *surface area*, not its volume. The interior is derivable from the boundary. Black hole thermodynamics, AdS/CFT, and the holographic principle all say the same thing: the boundary encodes the bulk.
-
-The same structural relationship holds for cognitive architectures:
+In physics, the holographic principle describes how the information content of a volume can be encoded on its boundary surface. While the mechanism is different (gravitational entropy vs. information selection), the same *structural pattern* — boundary encodes bulk — holds for cognitive architectures:
 
 ```
 Bulk:       30,000+ chunks in .cog/ — full ledger, all memory, complete history
@@ -26,7 +24,7 @@ Generation: Structured output consistent with the boundary.
             Quality = f(boundary quality), not f(model size).
 ```
 
-This isn't metaphorical. The information-theoretic argument is direct:
+The information-theoretic argument is straightforward:
 
 1. The model's output is conditioned entirely on its input (the boundary)
 2. No amount of model capacity can recover information absent from the input
@@ -42,7 +40,7 @@ If the holographic principle holds, then:
 - A small model with good boundary should beat a large model with poor boundary
 - Context assembly time should dominate generation quality, not model inference time
 
-The TRM's NDCG 0.900 at D_STATE=4 is the most direct evidence: the entire coupling between an observer and a workspace with thousands of chunks compresses to 4 dimensions. The viable manifold of relevance is low-dimensional.
+Preliminary TRM evaluation at D_STATE=4 shows NDCG ~0.9 on workspace context selection (formal benchmarking with cosine similarity and BM25 baselines is in progress). If this holds, it means the entire coupling between an observer and a workspace with thousands of chunks compresses to 4 dimensions. The viable manifold of relevance is low-dimensional.
 
 ## Structured Hallucination
 

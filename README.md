@@ -29,11 +29,12 @@ This is public architecture research related to CogOS. It does not contain the f
 
 ## Related projects
 
-- [cogos](https://github.com/cogos-dev/cogos) -- The cognitive operating system
-- [constellation](https://github.com/cogos-dev/constellation) -- Distributed inference across heterogeneous devices
-- [mod3](https://github.com/cogos-dev/mod3) -- Multi-model TTS channel server
-- [charts](https://github.com/cogos-dev/charts) -- Helm charts for CogOS deployment
-- [desktop](https://github.com/cogos-dev/desktop) -- Desktop application
+- [cogos](https://github.com/cogos-dev/cogos) -- The kernel — continuous process daemon with foveated context and multi-provider routing
+- [constellation](https://github.com/cogos-dev/constellation) -- Distributed trust — identity as temporal coherence, O(1) mutual verification
+- [mod3](https://github.com/cogos-dev/mod3) -- Modality bus — translates between thinking and acting, voice-first
+- [skills](https://github.com/cogos-dev/skills) -- Plugin marketplace — Agent Skills across workflow, research, voice, and dev tools
+- [charts](https://github.com/cogos-dev/charts) -- Deployment — Helm charts + Docker Compose
+- [desktop](https://github.com/cogos-dev/desktop) -- Native macOS app — kernel management, terminal, dashboard
 
 ## License
 
