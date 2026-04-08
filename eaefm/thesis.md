@@ -6,7 +6,7 @@
 
 Quality of a cognitive system's output is a function of its **boundary quality**, not its model size. If you assemble the right context with the right conditioning signals, a 4B model on a phone produces quality comparable to a 100B+ model in a standard agent loop — because the cognitive overhead is externalized into the substrate rather than consumed as tokens.
 
-This is a testable, falsifiable claim. The evidence is both theoretical (information-theoretic arguments about where cognitive work actually happens) and empirical (a Tiny Recursive Model (TRM) — a 2.28M-parameter Mamba SSM — scoring context relevance at D_STATE=4 with preliminary NDCG around 0.9 on workspace context selection).
+This is a testable, falsifiable claim. The evidence is both theoretical (information-theoretic arguments about where cognitive work actually happens) and empirical (a TRM — Tiny Recursive Model inspired by [Jolicoeur-Martineau 2024](https://arxiv.org/abs/2510.04871), implemented as a 2.28M-parameter Mamba SSM — scoring context relevance at D_STATE=4 with preliminary NDCG around 0.9 on workspace context selection).
 
 ## The Holographic Principle for Cognitive Systems
 
