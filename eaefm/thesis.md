@@ -1,139 +1,153 @@
 # Externalized Attention and Executive Function Modulation for Intelligent Systems
 
-## The Thesis
+> This document extends the architectural overview in the [cogos README](https://github.com/cogos-dev/cogos). That document describes *what* CogOS does. This one argues *why it works* and *what follows* from the design.
 
-CogOS is not an agent framework, a RAG pipeline, or a chat wrapper. It is an **externalized executive function for intelligent systems**.
+## The Claim
 
-It fills the architectural niche between the generative model and the observer (whether user or agent). Both user and agent are observers in the CogOS environment. The substrate mediates everything between those observers and the generative inference providers.
+Quality of a cognitive system's output is a function of its **boundary quality**, not its model size. If you assemble the right context with the right conditioning signals, a 4B model on a phone produces quality comparable to a 100B+ model in a standard agent loop — because the cognitive overhead is externalized into the substrate rather than consumed as tokens.
 
-The model doesn't need to run its chain of thought before responding. The chain of thought is already taken care of by the substrate. All the model has to do is generate from whatever it's handed.
-
-This architecture maps equally to human cognition and machine cognition because it externalizes the management infrastructure that both share -- rather than trying to learn everything in pretraining in hope of accounting for every possible situation.
-
-## EA/EFM: Two Externalized Functions
-
-The substrate provides two things that models currently do poorly and expensively.
-
-### Externalized Attention (EA)
-
-Deciding what information is relevant *before* the model sees it. Not retrieval (pulling data), not augmentation (adding data), but **attention** -- the selective amplification of what matters and suppression of what doesn't.
-
-| Component | Function |
-|-----------|----------|
-| TRM scoring | What's relevant (D_STATE=4, microseconds) |
-| Foveated zones | What to keep (Nucleus, Knowledge, History, Current) |
-| Salience field | What's hot (recency + frequency + churn) |
-| Iris pressure | How tight the fovea should be |
-| Observer loop | What changed since last consolidation |
-
-The model never has to attend to irrelevant information because the substrate already filtered it.
-
-### Executive Function Modulation (EFM)
-
-Deciding how the model should behave *before* it generates. Not prompting (telling the model what to do in English), but **modulation** -- shaping the computational trajectory through conditioning signals.
-
-| Component | Function |
-|-----------|----------|
-| Process state machine | When to act (Active / Receptive / Consolidating / Dormant) |
-| Sovereignty gradient | Who to trust (local-first, cloud as fallback) |
-| Tool-call gate | What's safe (model proposes, runtime disposes) |
-| Consolidation policy | When to sleep (periodic cycles during Dormant) |
-| Heartbeat / trust | Am I coherent (self-validation) |
-
-The model never has to decide whether to use a tool, which provider to route to, or when to consolidate. The substrate's executive function already made those decisions.
-
-## The Substrate Principle
-
-```
-Standard agent:
-  prompt -> [MODEL: think about context -> reason about tools -> generate] -> output
-
-CogOS:
-  prompt -> [SUBSTRATE: TRM scores, foveated assembly, tool-call gate, salience]
-         -> [MODEL: just generate from pre-digested context] -> output
-```
-
-The model is a **pure generation engine**, not a reasoning engine. It doesn't reason about its own context -- the substrate already did that with specialized, fast, deterministic code instead of stochastic autoregressive prediction.
-
-This is why a small model at high throughput on a phone can produce quality comparable to much larger models in standard agent loops: the cognitive overhead is externalized into the substrate.
-
-**The model generates. The substrate thinks. Quality = f(boundary quality).**
+This is a testable, falsifiable claim. The evidence is both theoretical (information-theoretic arguments about where cognitive work actually happens) and empirical (TRM scoring at D_STATE=4 achieving NDCG 0.900 on context selection).
 
 ## The Holographic Principle for Cognitive Systems
 
-If all the model needs to do is generate structured outputs consistent with its input, then the information within the cognitive system can be represented by separating the **bulk** from the **boundary**.
+In physics, the Bekenstein-Hawking bound tells us the information content of a volume is proportional to its *surface area*, not its volume. The interior is derivable from the boundary. Black hole thermodynamics, AdS/CFT, and the holographic principle all say the same thing: the boundary encodes the bulk.
 
-In physics, the information content of a volume is encoded on its boundary, not in its bulk. The interior is derivable from the surface. The same principle applies to cognitive architectures:
+The same structural relationship holds for cognitive architectures:
 
 ```
-Bulk (substrate):     Thousands of chunks, full ledger, all history
-                      Stored in persistent workspace, git-backed
-                      Never seen by the model
+Bulk:       30,000+ chunks in .cog/ — full ledger, all memory, complete history
+            Never seen by the model. Stored in persistent workspace.
 
-Boundary (foveated):  ~10 documents, scored and zone-ordered
-                      Assembled per-request by TRM + salience
-                      The ONLY thing the model sees
+Boundary:   ~10 documents, scored by TRM + salience, zone-ordered
+            The ONLY information the model receives.
+            Assembled per-request in milliseconds.
 
-Generation:           Structured output consistent with the boundary
-                      Model doesn't access the bulk -- ever
-                      Quality = f(boundary quality), not f(model size)
+Generation: Structured output consistent with the boundary.
+            Quality = f(boundary quality), not f(model size).
 ```
 
-Both bulk and boundary live in the same closed structure (the workspace) within the same open environment (the loop of frontier distillation + local generation + user feedback). The workspace is self-referentially closed (hash-chained, coherence-validated) but thermodynamically open (ingests external reasoning, emits structured traces).
+This isn't metaphorical. The information-theoretic argument is direct:
 
-## Structured Hallucination and Boundary Quality
+1. The model's output is conditioned entirely on its input (the boundary)
+2. No amount of model capacity can recover information absent from the input
+3. Therefore, output quality is bounded above by boundary quality
+4. The marginal return on model size is limited by the boundary's information content
 
-"Structured hallucination" is the precisely correct term for what generation is. The model doesn't *know* anything. It produces structured outputs that are *consistent with* the boundary information it was given.
+The standard scaling approach invests in the model (the generator). The substrate approach invests in the boundary (the assembled context). These are complementary but asymmetric — the boundary has the larger effect because it's the constraining variable.
 
-- If the boundary is well-formed (the foveated engine did its job) -- the hallucination is useful
-- If the boundary is garbage -- the hallucination is garbage
-- The model's quality is bounded by the boundary's quality, not by the model's size
+### Empirical signature
 
-This inverts the scaling hypothesis. The standard approach says "make the model bigger to make it smarter." The substrate approach says "make the boundary better to make any model more effective." The model is a dependent variable. The boundary is the independent variable.
+If the holographic principle holds, then:
+- Improving boundary quality (better TRM, better salience) should improve output more than upgrading the model
+- A small model with good boundary should beat a large model with poor boundary
+- Context assembly time should dominate generation quality, not model inference time
+
+The TRM's NDCG 0.900 at D_STATE=4 is the most direct evidence: the entire coupling between an observer and a workspace with thousands of chunks compresses to 4 dimensions. The viable manifold of relevance is low-dimensional.
+
+## Structured Hallucination
+
+"Hallucination" is typically framed as a failure mode. But generation IS hallucination — the model produces structured outputs consistent with statistical regularities in its training data, conditioned on its input.
+
+The question isn't "does the model hallucinate?" (it always does). The question is "does the hallucination align with the task?"
+
+- Well-formed boundary → aligned hallucination → useful output
+- Malformed boundary → misaligned hallucination → garbage output
+- No boundary (zero-shot) → unconstrained hallucination → model must use its own parameters as the only source of structure
+
+This reframes the entire scaling debate. "Making models less hallucinate-y" (RLHF, constitutional AI, etc.) is model-side optimization. "Making the boundary better so hallucinations are well-aimed" is substrate-side optimization. Both matter, but the substrate side has been systematically underinvested.
+
+The CogOS architecture bets that boundary quality is the higher-leverage variable. The model is a **dependent variable** — its quality follows from what it's given.
 
 ## Four Nested Attention Mechanisms
 
-The foveated context engine is not RAG. It is the **substrate's attention mechanism** -- the system-level analog of what attention heads do inside a transformer.
+The foveated context engine is commonly misidentified as RAG. It is not retrieval. It is the system-level implementation of attention — the same computational operation that attention heads perform inside transformers, applied at the workspace scale.
 
-| Scale | Mechanism | Operates on | Bottleneck | Time |
-|-------|-----------|------------|------------|------|
-| PLE | Per-layer conditioning | Token embeddings | 256 dim | Nanoseconds |
-| Transformer attention | QKV dot-product | Token positions | Head dim (64-128) | Nanoseconds |
-| Foveated engine | TRM + salience scoring | Workspace chunks | TRM D_STATE (4) | Milliseconds |
-| TRM light cone | SSM state update | Session events | D_STATE (4) | Seconds |
+| Scale | Mechanism | Input | Bottleneck | Time scale | What it selects |
+|-------|-----------|-------|------------|------------|-----------------|
+| Token | PLE (Gemma 4) | Token ID + context | 256 dim | Nanoseconds | Per-layer behavior modification |
+| Sequence | Transformer attention | Token positions | Head dim 64-128 | Nanoseconds | Which tokens attend to which |
+| Workspace | Foveated engine | All available chunks | TRM D_STATE=4 | Milliseconds | Which documents enter the boundary |
+| Session | TRM light cone | Interaction events | D_STATE=4 | Seconds-minutes | How relevance evolves over time |
 
-Four nested attention mechanisms, each operating through a low-rank bottleneck, each conditioning the layer above it.
+Four mechanisms, each operating through a low-rank bottleneck, each conditioning the layer above it. This is not a coincidence — it reflects the empirical finding that **meaningful modulation of high-dimensional systems lives in a low-dimensional subspace** (see the [LoRO framework](../loro/framework.md) for the mathematical treatment).
 
-The zone structure maps onto attention in practice:
-- **Zone 0 (Nucleus)** = system prompt's position encoding -- always present, never evicted
-- **Zone 1 (Knowledge)** = few-shot examples -- high-value, shifts slowly
-- **Zones 2-3 (History + Current)** = input sequence -- recent, volatile, evictable
+The zone structure maps onto attention directly:
+- **Zone 0 (Nucleus)** = positional anchor — always present, shapes all subsequent processing. Analogous to the `[CLS]` token or system prompt.
+- **Zone 1 (Knowledge)** = slow-moving context — high KV cache reuse, shifts across sessions not turns. Analogous to few-shot examples.
+- **Zone 2 (History)** = conversation memory — scored by TRM, evictable under pressure. Analogous to the attention window's middle region.
+- **Zone 3 (Current)** = immediate input — always present, highest volatility. Analogous to the most recent tokens.
 
-Iris pressure = attention budget management. High pressure tightens the fovea (fewer, more relevant documents). Low pressure widens it (broader context, less precision).
+**Iris pressure** is attention budget management. High pressure contracts the fovea (fewer, more relevant documents, tighter zone budgets). Low pressure dilates it (broader context, more exploratory). This mirrors pupil response in biological vision — and the gating mechanism in Mamba's selective state space.
 
-## Why This Is Substrate-Independent
+## Why Externalized and Why Not Learned
 
-The architecture doesn't say "AI." It says "intelligent systems." Because:
+A natural objection: if the substrate's attention and executive function are so important, why not train the model to do them?
 
-- The foveated engine doesn't care if the observer is a transformer, a Mamba SSM, a human reading a dashboard, or a future architecture
-- It assembles the right context for *any* observer based on workspace state and observer trajectory
-- The coupling function (TRM light cone) is the same regardless of what's coupled
+Three reasons:
 
-Every other approach says "make the model smarter." This approach says "make the environment more structured so that *any* intelligence -- human or machine -- can operate more effectively within it."
+**1. Thermodynamic cost.** Autoregressive generation costs O(n) per token, where n is the sequence length. The substrate's attention (TRM scoring, zone ordering, iris adjustment) is O(1) per candidate chunk — a fast deterministic scan, not a stochastic generation process. Using the model to manage its own context burns tokens on overhead that could be spent on generation.
 
-That's why the TRM works at D_STATE=4. It's not modeling intelligence. It's modeling the *coupling* between an observer and an environment. That coupling is low-dimensional because the relationship is simple even when both sides are complex.
+**2. The self-reference problem.** A model cannot attend to information it hasn't seen. It cannot decide what context is relevant without first loading all context to evaluate. This is circular — you need the answer to form the question. The substrate breaks this circularity by maintaining state across sessions (the TRM light cone) that the model never sees but that shapes what the model receives.
 
-## Connection to Executive Function Research
+**3. Combinatorial fragility.** Fine-tuning a model to manage its own attention + tool use + memory + routing creates a coupled system where improving one capability can degrade others. Externalizing these functions into separate, independently testable components (foveated engine, tool-call gate, router, consolidation policy) creates a modular system where each component can be improved without side effects.
 
-This maps directly to executive function research in cognitive science. The deficit in conditions like ADHD isn't intelligence -- it's the *management infrastructure* around intelligence:
+The parallel to human cognition is exact: executive function disorders (ADHD, frontal lobe damage) impair the *management* of intelligence, not intelligence itself. The deficit is in attention direction, impulse inhibition, task switching, and working memory maintenance — precisely the functions CogOS externalizes. A brilliant person with executive dysfunction isn't lacking capability. They're lacking the environmental scaffolding that neurotypical brains build automatically. CogOS is that scaffolding, made explicit and available to any observer.
 
-- Directing attention (what to focus on)
-- Inhibiting impulses (what not to do)
-- Switching tasks (when to change mode)
-- Maintaining working memory (what to keep active)
+## Substrate Independence
 
-A brilliant person with executive function deficits isn't lacking capability -- they're lacking the environmental scaffolding that neurotypical brains build automatically.
+The architecture says "intelligent systems," not "AI," because the substrate doesn't care what the observer is:
 
-LLMs have the same structural deficit. They're intelligent but have no executive function. They can't decide what to attend to, when to stop, or what to remember.
+- A transformer reading a foveated context package
+- A Mamba SSM processing the same zones
+- A human reading a dashboard with the same documents
+- A future architecture consuming the same MCP endpoint
 
-CogOS is that scaffolding, made explicit and externalized, available to any observer -- human or machine.
+The foveated engine assembles context for *any observer* based on workspace state and the observer's trajectory (tracked by TRM). The coupling function is the same regardless of what's coupled.
+
+This is why the TRM works at D_STATE=4. It's not modeling intelligence — it's modeling the **coupling** between an observer and an information environment. That coupling is low-dimensional because the relevant relationship between observer and environment is simple, even when both sides are individually complex.
+
+## Comparison with Existing Cognitive Architectures
+
+| Architecture | Approach | Attention mechanism | Executive function | Substrate independence |
+|-------------|----------|--------------------|--------------------|----------------------|
+| **ACT-R** (Anderson) | Production system with declarative/procedural memory | Activation-based spreading | Built into production matching | Tightly coupled to ACT-R runtime |
+| **SOAR** (Laird) | Universal subgoaling with working memory | Recency + preference rules | Impasse-driven subgoaling | SOAR-specific representations |
+| **Global Workspace** (Baars) | Broadcast to specialized processors | Competition for global workspace | Implicit in broadcast selection | Theoretical, not implemented |
+| **RAG systems** | Retrieve-then-generate | Embedding similarity (static) | None (model does everything) | Model-agnostic but attention is primitive |
+| **CogOS** | Externalized EA + EFM | Foveated assembly (TRM + salience + zones) | Process state machine + sovereignty gradient + tool gate | Any observer via standard protocols |
+
+The key difference: ACT-R and SOAR build intelligence into the architecture. CogOS builds the *management infrastructure* and leaves intelligence to the observer. This is why it's substrate-independent — it doesn't implement cognition, it implements the scaffolding that makes cognition effective.
+
+## Falsifiability
+
+The thesis makes specific predictions:
+
+1. **Boundary dominance:** Improving context assembly quality (better TRM, better salience scoring) should improve output quality more than upgrading the model by one size class. Testable by A/B comparison.
+
+2. **Small model parity:** A 4B model with CogOS substrate should match a 70B model without it on workspace-specific tasks where context is the bottleneck. Testable by benchmark comparison.
+
+3. **D_STATE sufficiency:** The TRM's D_STATE=4 should remain sufficient as workspace size grows (up to the point where the observer-environment coupling becomes genuinely high-dimensional). Testable by scaling experiments.
+
+4. **Executive function transfer:** Adding CogOS to a new model should immediately improve its task completion rate without any model fine-tuning. Testable by swapping models behind the same substrate.
+
+5. **Diminishing model returns:** Within a CogOS-managed workspace, doubling model size should produce less improvement than doubling context assembly quality. Testable by cost-benefit analysis.
+
+If boundary quality turns out NOT to be the dominant variable — if model size always wins regardless of context quality — the thesis is wrong.
+
+## Connection to the LoRO Framework
+
+The [LoRO framework](../loro/framework.md) provides the mathematical foundation for why low-rank conditioning works at every scale. PLE (token-level), LoRA (task-level), and TRM (session-level) are all instances of the same pattern: a compact state modulates a much larger system through a bottleneck.
+
+The connection to EA/EFM: the substrate IS a LoRO — a low-rank observer that conditions the generator. The foveated boundary is the bottleneck. The workspace bulk is the high-dimensional system being modulated. The TRM light cone is the compact state.
+
+```
+LoRO at substrate scale:
+  state       = TRM light cone (D_STATE=4)
+  update      = Session events → selective scan
+  gate        = Iris pressure + salience scoring
+  project     = Foveated assembly (workspace → boundary)
+  base        = Model's pre-trained generation
+  inject      = Context window (the boundary IS the injection)
+```
+
+The substrate principle and LoRO are the same insight at different levels of abstraction.
