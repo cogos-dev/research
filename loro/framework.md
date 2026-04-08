@@ -2,15 +2,15 @@
 
 ## Executive Summary
 
-Per-Layer Embeddings (PLE, Gemma 4), LoRA adapters, and the Mamba TRM are structurally convergent mechanisms. All three:
+Per-Layer Embeddings (PLE, Gemma 4), LoRA (Low-Rank Adaptation) adapters, and the Mamba TRM (Tiny Recursive Model) are structurally convergent mechanisms. All three:
 
-1. Maintain a compact state (PLE: 256-dim, LoRA: rank r, TRM: D_STATE=4)
+1. Maintain a compact state (PLE: 256-dim, LoRA: rank r, TRM: D_STATE (state dimension), set to 4)
 2. Use it to gate/modulate a larger system's computation through a bottleneck
 3. Inject via residual connection
 4. Are dramatically smaller than the systems they condition
 5. Exploit the low intrinsic dimensionality of their target computation
 
-While individual mechanisms are well-studied (LoRA variants, PLE in Gemma, SSMs for sequence modeling), the structural convergence across all three — and especially the connection to SSM-based context scoring — appears uncharted as of April 2026. We propose a unified abstraction -- **LoRO (Low-Rank Observer)** -- that captures all three as instances of a self-referential loop where a low-rank state shapes the computation that produces the next observation that updates the state.
+While individual mechanisms are well-studied (LoRA variants, PLE in Gemma, SSMs (Selective State Space Models) for sequence modeling), the structural convergence across all three — and especially the connection to SSM-based context scoring — appears uncharted as of April 2026. We propose a unified abstraction -- **LoRO (Low-Rank Observer)** -- that captures all three as instances of a self-referential loop where a low-rank state shapes the computation that produces the next observation that updates the state.
 
 ## LoRA Mathematical Foundation
 

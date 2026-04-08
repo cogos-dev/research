@@ -9,7 +9,7 @@ Theoretical foundations, architecture research, and proof-of-concept experiments
 | Document | Description |
 |----------|-------------|
 | [eaefm/thesis.md](eaefm/thesis.md) | **EA/EFM Thesis** -- Externalized Attention and Executive Function Modulation. The core argument: the substrate thinks, the model generates, and quality is a function of boundary quality. |
-| [loro/framework.md](loro/framework.md) | **LoRO Framework** -- Low-Rank Observer as a unified abstraction connecting PLE, LoRA, and TRM. Three mechanisms, one pattern, operating at different time scales. |
+| [loro/framework.md](loro/framework.md) | **LoRO Framework** -- Low-Rank Observer as a unified abstraction connecting PLE (Per-Layer Embeddings), LoRA (Low-Rank Adaptation), and TRM (Tiny Recursive Model). Three mechanisms, one pattern, operating at different time scales. |
 | `poc/` | Proof-of-concept experiments (coming soon) |
 | `papers/` | Academic papers and preprints (coming soon) |
 

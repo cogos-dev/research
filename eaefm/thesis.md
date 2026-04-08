@@ -6,7 +6,7 @@
 
 Quality of a cognitive system's output is a function of its **boundary quality**, not its model size. If you assemble the right context with the right conditioning signals, a 4B model on a phone produces quality comparable to a 100B+ model in a standard agent loop — because the cognitive overhead is externalized into the substrate rather than consumed as tokens.
 
-This is a testable, falsifiable claim. The evidence is both theoretical (information-theoretic arguments about where cognitive work actually happens) and empirical (a TRM — Tiny Recursive Model inspired by [Jolicoeur-Martineau 2024](https://arxiv.org/abs/2510.04871), implemented as a 2.28M-parameter Mamba SSM — scoring context relevance at D_STATE (the Mamba state dimension — the compressed representation size), set to 4, with preliminary NDCG (Normalized Discounted Cumulative Gain, a standard ranking quality metric) around 0.9 on workspace context selection).
+This is a testable, falsifiable claim. The evidence is both theoretical (information-theoretic arguments about where cognitive work actually happens) and empirical (a TRM — Tiny Recursive Model inspired by [Jolicoeur-Martineau 2024](https://arxiv.org/abs/2510.04871), implemented as a 2.28M-parameter Mamba SSM (Selective State Space Model) — scoring context relevance at D_STATE (the Mamba state dimension — the compressed representation size), set to 4, with preliminary NDCG (Normalized Discounted Cumulative Gain, a standard ranking quality metric) around 0.9 on workspace context selection).
 
 ## The Holographic Principle for Cognitive Systems
 
@@ -62,12 +62,12 @@ The foveated context engine is commonly misidentified as RAG. It is not retrieva
 
 | Scale | Mechanism | Input | Bottleneck | Time scale | What it selects |
 |-------|-----------|-------|------------|------------|-----------------|
-| Token | PLE (Gemma 4) | Token ID + context | 256 dim | Nanoseconds | Per-layer behavior modification |
+| Token | PLE (Per-Layer Embeddings, Gemma 4) | Token ID + context | 256 dim | Nanoseconds | Per-layer behavior modification |
 | Sequence | Transformer attention | Token positions | Head dim 64-128 | Nanoseconds | Which tokens attend to which |
 | Workspace | Foveated engine | All available chunks | TRM D_STATE=4 | Milliseconds | Which documents enter the boundary |
 | Session | TRM light cone | Interaction events | D_STATE=4 | Seconds-minutes | How relevance evolves over time |
 
-Four mechanisms, each operating through a low-rank bottleneck, each conditioning the layer above it. This is not a coincidence — it reflects the empirical finding that **meaningful modulation of high-dimensional systems lives in a low-dimensional subspace** (see the [LoRO framework](../loro/framework.md) for the mathematical treatment).
+Four mechanisms, each operating through a low-rank bottleneck, each conditioning the layer above it. This is not a coincidence — it reflects the empirical finding that **meaningful modulation of high-dimensional systems lives in a low-dimensional subspace** (see the [LoRO (Low-Rank Observer) framework](../loro/framework.md) for the mathematical treatment).
 
 The zone structure maps onto attention directly:
 - **Zone 0 (Nucleus)** = positional anchor — always present, shapes all subsequent processing. Analogous to the `[CLS]` token or system prompt.
@@ -134,7 +134,7 @@ If boundary quality turns out NOT to be the dominant variable — if model size 
 
 ## Connection to the LoRO Framework
 
-The [LoRO framework](../loro/framework.md) provides the mathematical foundation for why low-rank conditioning works at every scale. PLE (token-level), LoRA (task-level), and TRM (session-level) are all instances of the same pattern: a compact state modulates a much larger system through a bottleneck.
+The [LoRO framework](../loro/framework.md) provides the mathematical foundation for why low-rank conditioning works at every scale. PLE (token-level), LoRA (Low-Rank Adaptation, task-level), and TRM (session-level) are all instances of the same pattern: a compact state modulates a much larger system through a bottleneck.
 
 The connection to EA/EFM: the substrate IS a LoRO — a low-rank observer that conditions the generator. The foveated boundary is the bottleneck. The workspace bulk is the high-dimensional system being modulated. The TRM light cone is the compact state.
 
