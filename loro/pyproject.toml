@@ -1,0 +1,12 @@
+[project]
+name = "cogos-autoresearch"
+version = "0.1.0"
+description = "Autoresearch for the TRM cognitive context engine"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.4",
+    "numpy>=1.26",
+    "sentence-transformers>=3.0",
+    "einops>=0.7",
+    "pyyaml>=6.0",
+]
