@@ -46,6 +46,14 @@ LABEL_SMOOTHING = 0.0       # smoothing for BCE loss
 TRAIN_SECONDS = None        # override TIME_BUDGET (None = use prepare.py default, range: 30-120)
 
 
+def load_judge_data(*args, **kwargs):
+    """TODO: implement judge-data loader used by finetune_judge.py.
+
+    Stub exists so `from train import load_judge_data` succeeds at import time.
+    """
+    raise NotImplementedError("load_judge_data is not implemented in train.py yet")
+
+
 class TRM(nn.Module):
     """
     Tiny Recursive Model for context assembly.
@@ -377,6 +385,14 @@ def get_device():
 
 def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
+
+def evaluate_judge_ndcg(*args, **kwargs):
+    """TODO: implement judge-set NDCG evaluation used by finetune_judge.py.
+
+    Stub exists so `from train import evaluate_judge_ndcg` succeeds at import time.
+    """
+    raise NotImplementedError("evaluate_judge_ndcg is not implemented in train.py yet")
 
 
 def main():

@@ -601,7 +601,9 @@ def train(args=None):
         if args.loss == 'infonce':
             # LRAT-style InfoNCE with optional in-batch negatives
             # Use last event embedding in each prefix as query proxy
-            query_embs = events[:, -1, :]  # (B, D) last event embedding as query
+            # Gather the true last event per sequence using lens (avoid reading padded steps)
+            last_idx = (lens - 1).view(-1, 1, 1).expand(-1, 1, events.size(-1))
+            query_embs = events.gather(1, last_idx).squeeze(1)  # (B, D) last event embedding as query
             pos_embs = gather_positives(candidates, labels)  # (B, D)
 
             # Per-sample weights will come from the data loader in a future task

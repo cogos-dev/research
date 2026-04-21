@@ -225,7 +225,7 @@ def main():
         print(f"ERROR: Model not found at {args.model}")
         sys.exit(1)
 
-    ckpt = torch.load(args.model, map_location="cpu", weights_only=False)
+    ckpt = torch.load(args.model, map_location="cpu", weights_only=True)
     state_dict = ckpt["model_state_dict"]
     config = ckpt.get("config", {})
 

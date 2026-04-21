@@ -214,7 +214,7 @@ def main():
     assert os.path.exists(args.checkpoint), f"No checkpoint at {args.checkpoint}"
     ckpt = torch.load(args.checkpoint, map_location="cpu", weights_only=True)
     cfg = ckpt["config"]
-    print(f"  NDCG: {ckpt.get('val_ndcg', '?'):.4f} | "
+    _v = ckpt.get('val_ndcg'); print(f"  NDCG: {f'{_v:.4f}' if isinstance(_v, (int, float)) else '?'} | "
           f"judge_trained: {ckpt.get('judge_trained', False)}")
 
     model = TRM(

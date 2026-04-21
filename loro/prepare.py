@@ -733,6 +733,12 @@ def generate_signal_pairs(
     n_chunks = len(chunks)
     if n_chunks < MIN_DOCS:
         return None, 0, len(signals)
+    if n_chunks < pool_size:
+        # Unique-index padding loop below (while len(pool) < pool_size) would
+        # spin forever if there are fewer unique chunks than pool_size slots.
+        raise ValueError(
+            f"insufficient chunks: n_chunks={n_chunks} < pool_size={pool_size}"
+        )
 
     rng = random.Random(42)
     all_indices = list(range(n_chunks))
@@ -1004,6 +1010,13 @@ def generate_query_candidate_pairs(
                      if i not in set(all_candidates) and i != query_idx]
             extra = rng.sample(extra, min(pool_size - len(all_candidates), len(extra)))
             all_candidates.extend(extra)
+            # If still short (n_chunks too small for unique fill), repeat-pad
+            # existing candidates so downstream .view((N, pool_size, D)) succeeds.
+            if len(all_candidates) < pool_size and all_candidates:
+                deficit = pool_size - len(all_candidates)
+                all_candidates.extend(
+                    all_candidates[j % len(all_candidates)] for j in range(deficit)
+                )
 
         pool = all_candidates[:pool_size]
 
@@ -1085,6 +1098,11 @@ def make_dataloader(data: dict, batch_size: int, split: str = "train"):
     c = data["candidate_embeddings"]
     l = data["labels"]
     w = data.get("weights")  # may be None for old data files
+
+    if not indices:
+        # Empty split would make `while True` yield nothing forever; fail loud
+        # so callers (tiny / single-session data) learn about it immediately.
+        raise ValueError(f"cannot create dataloader: {split!r} split is empty")
 
     epoch = 1
     while True:
