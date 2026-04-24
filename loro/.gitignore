@@ -1,0 +1,31 @@
+# Model weights (trained on personal agent traces — never publish)
+*.pt
+*.onnx
+*.safetensors
+*.gguf
+*.bin
+
+# Training data (mined from private sessions)
+training-signals.jsonl
+training-signals/
+trm_chunks.json
+trm_reference.json
+shadow_log.jsonl
+judge_data.pt
+response_judge_data.pt
+
+# Evaluation results (may reveal workspace structure)
+eval_results.json
+eval_response_results.json
+results.tsv
+results_*.tsv
+results_archive/
+
+# Python artifacts
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Temporary
+.tmp/
