@@ -685,7 +685,7 @@ def main():
     parser.add_argument(
         "--workspace",
         type=str,
-        default="/Users/slowbro/workspaces/cog",
+        default=str(pathlib.Path.home() / "workspaces" / "cog"),
         help="Workspace root for making file paths relative (used with --generate-pairs)",
     )
     args = parser.parse_args()

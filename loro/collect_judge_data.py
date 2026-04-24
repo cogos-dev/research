@@ -40,7 +40,7 @@ from train import TRM
 # ---------------------------------------------------------------------------
 
 QUERY_TEMPLATES = [
-    # Architecture / design questions (Chaz's primary pattern)
+    # Architecture / design questions (researcher's primary pattern)
     "What is {concept} and how does it work?",
     "How does {concept_a} relate to {concept_b}?",
     "What is the connection between {concept_a} and {concept_b}?",
@@ -58,7 +58,7 @@ QUERY_TEMPLATES = [
     "How does {concept} connect to the SRC framework?",
     "What does {concept} mean in terms of eigenforms?",
 
-    # Cross-domain connection questions (Chaz's signature pattern)
+    # Cross-domain connection questions (researcher's signature pattern)
     "How does {concept_a} from {domain_a} connect to {concept_b} from {domain_b}?",
     "What structural parallel exists between {concept_a} and {concept_b}?",
 ]

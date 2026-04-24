@@ -149,11 +149,12 @@ def find_chunk_indices(file_path: str, chunks: list[dict]) -> list[int]:
     """Find chunk indices in the index that match a given file path."""
     # Normalize path
     path = file_path.replace(os.path.expanduser("~"), "~")
+    home = os.path.expanduser("~")
     path_variants = [
         file_path,
         path,
-        file_path.replace("/Users/slowbro/cog-workspace/", ""),
-        file_path.replace("/Users/slowbro/cog-workspace/.cog/mem/", ""),
+        file_path.replace(os.path.join(home, "cog-workspace") + "/", ""),
+        file_path.replace(os.path.join(home, "cog-workspace", ".cog", "mem") + "/", ""),
     ]
 
     matches = []

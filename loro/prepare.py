@@ -605,16 +605,17 @@ def _normalize_signal_path(file_path: str, workspace_root: str) -> set[str]:
         candidates.add(file_path[len(ws):])
 
     # Strip common absolute prefixes (with trailing slash to avoid partial matches)
+    home = os.path.expanduser("~")
     abs_prefixes = [
-        "/Users/slowbro/cog-workspace/",
-        "/Users/slowbro/workspaces/cog/",
-        "/Users/slowbro/workspaces/cogos/",
-        "/Users/slowbro/workspaces/cogos-dev/cogos/",
-        "/Users/slowbro/workspaces/cogos-dev/",
-        "/Users/slowbro/claw-workspace/",
-        "/Users/slowbro/.claude/projects/-Users-slowbro-workspaces-cog/",
-        "/Users/slowbro/.claude/projects/-Users-slowbro-cog-workspace/",
-        "/Users/slowbro/.openclaw/workspace/",
+        os.path.join(home, "cog-workspace") + "/",
+        os.path.join(home, "workspaces", "cog") + "/",
+        os.path.join(home, "workspaces", "cogos") + "/",
+        os.path.join(home, "workspaces", "cogos-dev", "cogos") + "/",
+        os.path.join(home, "workspaces", "cogos-dev") + "/",
+        os.path.join(home, "claw-workspace") + "/",
+        os.path.join(home, ".claude", "projects", "-Users-slowbro-workspaces-cog") + "/",
+        os.path.join(home, ".claude", "projects", "-Users-slowbro-cog-workspace") + "/",
+        os.path.join(home, ".openclaw", "workspace") + "/",
     ]
     for prefix in abs_prefixes:
         if file_path.startswith(prefix):

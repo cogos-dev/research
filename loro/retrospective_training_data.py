@@ -159,7 +159,7 @@ RETROSPECTIVE_DATA = [
             ".cog/mem/semantic/insights/local-agi-thesis.cog.md",
             ".cog/mem/semantic/research/cognitive-sovereignty-stack-spec.cog.md",
         ],
-        "reasoning": "The shared substrate claim connects Chaz's axioms ('consciousness doesn't require magic', 'AI shouldn't require more power than my brain'), the local AGI thesis, and the cognitive sovereignty stack. SOUL.md and USER.md provide the relational context.",
+        "reasoning": "The shared substrate claim connects the researcher's axioms ('consciousness doesn't require magic', 'AI shouldn't require more power than my brain'), the local AGI thesis, and the cognitive sovereignty stack. SOUL.md and USER.md provide the relational context.",
         "what_was_missing": "The cognitive sovereignty stack and local AGI thesis weren't loaded together. The shared substrate insight bridges them.",
     },
 ]

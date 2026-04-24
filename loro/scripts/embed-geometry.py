@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer
 import torch.nn.functional as F
 from prepare import load_markdown_docs, chunk_documents
 
-workspace = '/Users/slowbro/workspaces/cog'
+workspace = os.path.join(os.path.expanduser('~'), 'workspaces', 'cog')
 docs = load_markdown_docs(workspace)
 chunks = chunk_documents(docs)
 print(f'Loaded {len(chunks)} chunks from workspace')
