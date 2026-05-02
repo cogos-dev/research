@@ -60,12 +60,11 @@ reentrancy attack: the withdrawal function sent ETH to the caller before updatin
 recorded balance. The attacker's contract re-invoked withdrawal before the first call
 had updated storage, draining 3.6 million ETH. In SRC terms: X (actual balance)
 changed when ETH was transferred; X̂ (recorded balance) was not updated until the
-function returned normally. The delay d between the dynamics changing and the
-description updating exceeded τ₁, and the attacker operated in the gap where X̂ ≠ X.
-Post-mortems on the DAO hack documented this as a "checks-effects-interactions"
-violation; the remediation pattern (update state before interacting externally)
-enforces d = 0, restoring closure (see public DAO post-mortems; Wood, current;
-Ethereum Foundation incident documentation).
+function returned normally. In SRC terms, the closure condition d < τ₁ was violated:
+X̂ was not updated to reflect the changed dynamics X before re-entry, and the attacker
+operated in the gap where X̂ ≠ X. Post-mortems on the DAO hack documented this as a
+"checks-effects-interactions" violation; the remediation pattern (update state before
+interacting externally) enforces d = 0, restoring closure (Wood, current).
 
 ---
 

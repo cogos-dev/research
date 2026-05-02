@@ -30,7 +30,7 @@ This ratio is a structural property of the equations at the γ = κ condition, n
 
 ## 3. Self-Consistency Forced at γ = κ
 
-At the symmetric eigenform (γ = κ), the correlation takes the form ρ = e^(−r)√(2/3), where r = γd. No free parameters remain; the correlation is uniquely determined by delay alone. This is not tunable; the symmetric coupling forces a unique fixed point, and no parameter choices can produce a different correlation structure. The eigenform is the unique attractor of the symmetric system.
+At the symmetric eigenform (γ = κ), the correlation takes the form ρ = e^(−γd)√(2/3). The correlation structure is uniquely determined by the normalized delay γd; given symmetric coupling, no further degrees of freedom remain in ρ. This is not tunable: the symmetric coupling forces a unique fixed point, and no parameter choices (consistent with γ = κ) can produce a different correlation structure. The eigenform is the unique attractor of the symmetric system.
 
 ---
 

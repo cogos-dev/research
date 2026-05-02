@@ -93,9 +93,11 @@ threshold: the delay value at which the correlation ρ(d) between X and X̂ drop
 the description can no longer reliably reconstruct the dynamics; the mutual entailment
 breaks; the system is open rather than closed.
 
-**Open** and **closed** are binary states in this framing, not a gradient. A system
-operating with d < τ₁ under sufficient coupling κ can achieve and maintain the
-eigenform condition. A system with d ≥ τ₁ cannot, regardless of coupling strength.
+For the purposes of this framing, closure is treated as binary at the τ₁ threshold:
+a system either satisfies the closure conditions or it does not. The underlying ρ(d) is
+continuous, but the modeling cut at τ₁ produces a binary state. A system operating with
+d < τ₁ under sufficient coupling κ can achieve and maintain the eigenform condition. A
+system with d ≥ τ₁ cannot, regardless of coupling strength.
 The constant τ₁ is proven within the SRC Model; its value in normalized units is
 addressed in the analysis of SRC properties (see `properties.md`).
 
@@ -111,8 +113,7 @@ for its operation are generated internally, the (M,R) system in categorical term
 systems internalize the epistemic cut between rate-independent symbols and rate-dependent
 dynamics; symbols build the machinery that reads the symbols. **The SRC Model** provides
 the dynamical equations that say *when* closure holds and *when* it breaks: X̂ tracking
-X with delay d < τ₁ under coupling κ. The correspondence between all three is tabulated
-in the SRC ontology (src-digest §7; Rosen ↔ Pattee ↔ SRC Model correspondence):
+X with delay d < τ₁ under coupling κ. The correspondence between all three is direct:
 Rosen's metabolism maps to dX/dt; Rosen's repair maps to X̂; categorical closure maps
 to d < τ₁; Pattee's rate-independent symbols map to X̂; Pattee's coupling maps to κ;
 code arbitrariness maps to θ-invariance of the variance ratio.
