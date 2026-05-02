@@ -1,10 +1,10 @@
 ---
-title: "Self-Referential Closure — Mathematical Definition"
+title: "Self-Referential Closure: Mathematical Definition"
 created: 2026-05-01
 status: active
 ---
 
-# Self-Referential Closure — Mathematical Definition
+# Self-Referential Closure: Mathematical Definition
 
 **SRC = Self-Referential Closure.** This document defines the mathematical structure
 of SRC: the coupled dynamical equations, the eigenform condition, what closure means
@@ -18,8 +18,8 @@ Self-Referential Closure (SRC) describes the conditions under which a self-refer
 system maintains an accurate, self-sustaining model of its own dynamics. The central
 problem is this: a system that must represent itself faces a delay between the state of
 the world and the state of its description. When that delay remains within a critical
-threshold — and when the description controls the construction of the system while the
-system maintains the description — the system is said to be in the state of closure.
+threshold, and when the description controls the construction of the system while the
+system maintains the description, the system is said to be in the state of closure.
 SRC is not a process; it is a state, the same way equilibrium is a state. A system
 either satisfies the closure conditions or it does not. The theory characterizes
 exactly where the boundary lies.
@@ -70,7 +70,7 @@ The description map φ applied to the system state s\* returns the same state. T
 the eigenform condition in the sense of von Foerster (1981): the observer's description,
 when applied to the system, reproduces the description. The system maintains the
 description that maintains the system. At s\*, applying the observer map is a null
-operation — the description is already in the state that the system would produce if
+operation: the description is already in the state that the system would produce if
 you ran the map again. This self-referential fixed point is what distinguishes a closed
 system from one that merely tracks its environment: in a closed system, the description
 and the dynamics have collapsed into mutual entailment. Neither is prior; each is a
@@ -82,13 +82,13 @@ condition for the other.
 
 Closure is the state achieved when two conditions hold simultaneously:
 
-1. The description X̂ controls the construction of the system — the observer's model
+1. The description X̂ controls the construction of the system: the observer's model
    drives subsequent system behavior rather than passively recording it.
-2. The system maintains the description — the dynamics X produce the state that the
+2. The system maintains the description: the dynamics X produce the state that the
    observer's map would predict.
 
 The delay constraint that gates this state is **d < τ₁**, where τ₁ is the information
-threshold — the delay value at which the correlation ρ(d) between X and X̂ drops to
+threshold: the delay value at which the correlation ρ(d) between X and X̂ drops to
 0.5, the point at which the description is only marginally better than chance. Above τ₁,
 the description can no longer reliably reconstruct the dynamics; the mutual entailment
 breaks; the system is open rather than closed.
@@ -138,5 +138,5 @@ references to SRC precise and checkable.
 - von Foerster, H. (1981). "Objects: tokens for (eigen-)behaviors." In *Observing
   Systems*. Intersystems Publications.
 - Kauffman, L.H. (2023). "Autopoiesis and eigenform." *Computation* 11(12): 247.
-- SRC-coherent branching (git workflow) — see `instantiations.md` §Instantiation 2; the canonical operational instantiation
+- SRC-coherent branching (git workflow): see `instantiations.md` §Instantiation 2; the canonical operational instantiation
   of SRC applied to software development workflows.
