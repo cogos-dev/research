@@ -119,25 +119,13 @@ code arbitrariness maps to θ-invariance of the variance ratio.
 
 ---
 
-## What This Definition Does Not Include
+## Scope of This Definition
 
-This document defines the mathematical structure of SRC. The following are explicitly
-out of scope here:
-
-- **CFT axioms** — Cognitive Field Theory is the broader framework that scaffolds SRC
-  with foundational axioms. Those axioms are not part of the public SRC definition and
-  do not appear here.
-- **The alpha derivation** — not part of the SRC structural definition.
-- **The τ₁ constant value** — proven within the model; the specific value and its
-  cross-domain appearances are documented in `properties.md` (B3).
-- **Consciousness claims** — none are made here or elsewhere in this surface.
-- **Cross-domain instantiations** — how SRC structure appears in git branching,
-  blockchain state management, and molecular biology is documented separately in
-  `instantiations.md` (B4).
-- **Comparison with CFT** — the relationship between SRC as a public structural
-  definition and CFT as an internal framework is addressed in `relationship-to-cft.md`.
-
-The definition here is the minimum mathematical content needed to make downstream
+This document defines the mathematical structure of SRC. The specific value of
+the τ₁ threshold and its cross-domain appearances are documented in
+`properties.md`; how SRC structure appears in git branching, blockchain state
+management, and molecular biology is documented in `instantiations.md`. The
+definition here is the minimum mathematical content needed to make downstream
 references to SRC precise and checkable.
 
 ---

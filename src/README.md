@@ -9,25 +9,10 @@
 | [definition.md](definition.md) | The SRC Model — the two coupled differential equations, the eigenform condition, and precise definition of closure. |
 | [properties.md](properties.md) | Proven and conjectured properties of the SRC Model: the information threshold τ₁ = ln(2), the variance ratio a = 6 at the eigenform operating point, the uniqueness of the ρ formula under symmetric coupling, and θ-invariance. |
 | [instantiations.md](instantiations.md) | Cross-domain structural parallels — independent domains (git branching, molecular biology, blockchain state management) that exhibit SRC structure, establishing the pattern across contexts. |
-| [relationship-to-cft.md](relationship-to-cft.md) | The boundary between SRC (this public layer) and Cognitive Field Theory (the broader internal framework). Explains what SRC contributes and what CFT adds beyond it. |
 
-## Scope and boundary
+## Scope
 
-**This directory contains:**
-
-- The SRC Model dynamical equations and their derivation
-- Proven properties of the model (τ₁, a = 6, θ-invariance) scoped explicitly to the symmetric-coupling case
-- Cross-domain instantiations that exhibit SRC structure, drawn from established literature and CogOS operational experience
-- The relationship between SRC as a mathematical structure and CFT as the framework that scaffolds it
-
-**This directory does not contain:**
-
-- CFT axioms or foundational framework elements
-- The alpha derivation or any fine-structure constant claims
-- Consciousness claims of any kind
-- The full Cognitive Field Theory framework
-
-The broader CFT framework — which scaffolds SRC alongside additional foundational structure — is internal to the cogos-dev project. The public/internal boundary follows the same convention established in [research/README.md](../README.md): this repository contains public architecture research; it does not contain the full theoretical framework or private workspace internals.
+This directory contains the SRC Model dynamical equations and their derivation, proven properties of the model (τ₁, a = 6, θ-invariance) scoped to the symmetric-coupling case, and cross-domain instantiations that exhibit SRC structure, drawn from established literature and CogOS operational experience. The broader theoretical framework that scaffolds SRC remains internal to the cogos-dev project, following the convention established in [research/README.md](../README.md): this repository contains public architecture research; it does not contain the full theoretical framework or private workspace internals.
 
 ## Audience
 
