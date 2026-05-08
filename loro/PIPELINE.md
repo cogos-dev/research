@@ -34,7 +34,7 @@ Stage 5: Deployment
 ## Prerequisites
 
 ```sh
-cd apps/cogos-v3/autoresearch
+cd apps/cogos/autoresearch
 python3 -m venv .venv
 source .venv/bin/activate
 pip install torch sentence-transformers pyyaml numpy
@@ -51,7 +51,9 @@ You also need:
 
 **Script:** `mine_sessions.py`
 
-**Input:** Claude Code session JSON lines at `~/.claude/projects/-Users-slowbro-workspaces-cog/*.jsonl`
+**Input:** Claude Code session JSON lines at `~/.claude/projects/<your-cog-workspace-slug>/*.jsonl`
+
+The workspace slug is derived from your `COGOS_WORKSPACE` path: strip the leading slash and replace remaining slashes with dashes. For example, `~/workspaces/cog` becomes `Users-<username>-workspaces-cog`. Override with the `CLAUDE_SESSION_ARCHIVE_SLUG` environment variable.
 
 **Output:** Individual JSON files at `training-signals/signals/*.json`
 
@@ -255,7 +257,7 @@ trm: loaded weights (46165 chunks, 384 dim, 4 state)
 All stages in sequence:
 
 ```sh
-cd apps/cogos-v3/autoresearch
+cd apps/cogos/autoresearch
 source .venv/bin/activate
 
 # Stage 1: Extract signals (idempotent)

@@ -83,7 +83,7 @@ def parse_attention_log(log_path: str) -> list[dict]:
 
     Each signal has:
       - participant_id: str (e.g., "claude-code:unknown", "human:Mac-...")
-      - target_uri: str (e.g., "cog://workspace/apps/cogos-v3/main.go")
+      - target_uri: str (e.g., "cog://workspace/apps/cogos/main.go")
       - signal_type: str (read, search, write, visit, traverse)
       - context: dict (optional, e.g., {"tool": "Read"})
       - occurred_at: str (ISO timestamp)
@@ -197,7 +197,7 @@ def uri_to_file_path(uri: str, workspace_root: str = None) -> str:
     Convert a cog:// URI to a workspace-relative file path.
 
     Examples:
-      cog://workspace/apps/cogos-v3/main.go -> apps/cogos-v3/main.go
+      cog://workspace/apps/cogos/main.go -> apps/cogos/main.go
       cog://workspace/.cog/mem/semantic/foo.md -> .cog/mem/semantic/foo.md
       cog://mem/semantic/foo.md -> .cog/mem/semantic/foo.md
       cog://search/pattern -> (returns empty — not a file)

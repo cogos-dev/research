@@ -19,7 +19,7 @@ defined, because ``finetune_judge`` imports them by name).
 
 How to run
 ----------
-    cd ~/workspaces/cogos-dev/research
+    cd "$(git rev-parse --show-toplevel)"
     python3 loro/scripts/verify_imports.py
 
 Exit code 0 means every module imported clean. Exit code 1 means something

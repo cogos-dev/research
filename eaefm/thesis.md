@@ -1,6 +1,6 @@
 # Externalized Attention and Executive Function Modulation for Intelligent Systems
 
-> This document extends the architectural overview in the [cogos README](https://github.com/cogos-dev/cogos). That document describes *what* CogOS does. This one argues *why it works* and *what follows* from the design.
+> This document extends the architectural overview in the [cogos README](https://github.com/myrgic/cogos). That document describes *what* CogOS does. This one argues *why it works* and *what follows* from the design.
 
 ## The Claim
 

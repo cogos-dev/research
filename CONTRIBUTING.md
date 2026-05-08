@@ -15,7 +15,7 @@ Thanks for your interest. This repo holds the public research underlying CogOS �
 - **New theoretical claims** — open an issue first with the thesis sketch
 - **Large literature-review additions** — scope-check via issue before investing effort
 
-Open a [Feature Request](https://github.com/cogos-dev/research/issues/new?template=feature.yml) to propose the shape of a large change before drafting it.
+Open a [Feature Request](https://github.com/myrgic/research/issues/new?template=feature.yml) to propose the shape of a large change before drafting it.
 
 ## Document conventions
 
@@ -43,7 +43,7 @@ If your PoC involves code:
 
 ## Reporting issues
 
-Use the org-level [Bug Report](https://github.com/cogos-dev/research/issues/new?template=bug.yml) or [Feature Request](https://github.com/cogos-dev/research/issues/new?template=feature.yml) forms.
+Use the org-level [Bug Report](https://github.com/myrgic/research/issues/new?template=bug.yml) or [Feature Request](https://github.com/myrgic/research/issues/new?template=feature.yml) forms.
 
 ## License
 

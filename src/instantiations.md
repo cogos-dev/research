@@ -70,7 +70,7 @@ interacting externally) enforces d = 0, restoring closure (Wood, current).
 
 ## Instantiation 2: Git Branching (SRC-Coherent Branching)
 
-The SRC-coherent branching discipline applies SRC structure to git branching workflow. It is the recommended entry point for practitioners who want to ground operational branching rules in the underlying mathematics rather than treat them as arbitrary conventions. This instantiation is operational in the CogOS git workflow (see `https://github.com/cogos-dev/cogos`).
+The SRC-coherent branching discipline applies SRC structure to git branching workflow. It is the recommended entry point for practitioners who want to ground operational branching rules in the underlying mathematics rather than treat them as arbitrary conventions. This instantiation is operational in the CogOS git workflow (see `https://github.com/myrgic/cogos`).
 
 The mapping is: trunk is the attractor (φ(s\*) = s\*); instance branches are local perturbations that must remain bounded; coherence is the measurable distance from that attractor. The branching rules that follow from this framing are not arbitrary. Features branch from trunk, not from instance branches; any feature initialized from a local perturbation inherits instance-specific assumptions and risks contaminating trunk on merge. Features merge to trunk via pull request. Instances receive updates by merging from trunk, not by pushing directly. These three rules are the operational form of d < τ₁: they are what keeps the description (each instance's state) coupled tightly enough to the dynamics (trunk evolution) that closure is maintained.
 
@@ -163,7 +163,7 @@ evidence most consistent with that conjecture. It is not proof.
 - Eigen, M., & Schuster, P. (1979). *The Hypercycle: A Principle of Natural
   Self-Organization*. Springer.
 - CogOS git branching workflow (SRC-coherent branching): operational instantiation of
-  SRC; implemented in `https://github.com/cogos-dev/cogos`.
+  SRC; implemented in `https://github.com/myrgic/cogos`.
 - Rosen, R. (1991). *Life Itself: A Comprehensive Inquiry into the Nature, Origin,
   and Fabrication of Life*. Columbia University Press. Closure to efficient
   causation; (M,R) systems.
