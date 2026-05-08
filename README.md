@@ -1,6 +1,6 @@
 # CogOS Research
 
-**Part of the [CogOS](https://github.com/cogos-dev) ecosystem -- why it WORKS.**
+**Part of the [CogOS](https://github.com/myrgic) ecosystem -- why it WORKS.**
 
 Theoretical foundations, architecture research, and proof-of-concept experiments for cognitive operating system design.
 
@@ -29,13 +29,13 @@ This is public architecture research related to CogOS. It does not contain the f
 
 ## Related projects
 
-- [cogos](https://github.com/cogos-dev/cogos) -- The kernel — continuous process daemon with foveated context and multi-provider routing
-- [constellation](https://github.com/cogos-dev/constellation) -- Distributed trust — identity as temporal coherence, O(1) mutual verification
-- [mod3](https://github.com/cogos-dev/mod3) -- Modality bus — translates between thinking and acting, voice-first
-- [skills](https://github.com/cogos-dev/skills) -- Plugin marketplace — Agent Skills across workflow, research, voice, and dev tools
-- [charts](https://github.com/cogos-dev/charts) -- Deployment — Helm charts + Docker Compose
-- [desktop](https://github.com/cogos-dev/desktop) -- [ARCHIVED] Native macOS app -- kernel management, terminal, dashboard
-- [openclaw-plugin](https://github.com/cogos-dev/openclaw-plugin) -- [ARCHIVED] OpenClaw integration (how it CONNECTS)
+- [cogos](https://github.com/myrgic/cogos) -- The kernel — continuous process daemon with foveated context and multi-provider routing
+- [constellation](https://github.com/myrgic/constellation) -- Distributed trust — identity as temporal coherence, O(1) mutual verification
+- [mod3](https://github.com/myrgic/mod3) -- Modality bus — translates between thinking and acting, voice-first
+- [skills](https://github.com/myrgic/skills) -- Plugin marketplace — Agent Skills across workflow, research, voice, and dev tools
+- [charts](https://github.com/myrgic/charts) -- Deployment — Helm charts + Docker Compose
+- [desktop](https://github.com/myrgic/desktop) -- [ARCHIVED] Native macOS app -- kernel management, terminal, dashboard
+- [openclaw-plugin](https://github.com/myrgic/openclaw-plugin) -- [ARCHIVED] OpenClaw integration (how it CONNECTS)
 
 ## License
 

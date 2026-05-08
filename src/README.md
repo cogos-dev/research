@@ -1,6 +1,6 @@
 # Self-Referential Closure (SRC)
 
-**SRC = Self-Referential Closure**: a mathematical structure characterizing the conditions under which a self-referential system maintains an accurate, self-sustaining model of its own dynamics. A system achieves closure when its internal description X̂ tracks the external signal X well enough that the description controls the construction of the system and the system maintains the description, stabilizing into the eigenform condition φ(s\*) = s\*. This directory contains the published SRC mathematics and cross-domain instantiations that operationally ground the cogos-dev decentralized build-deploy-sync architecture at [https://github.com/cogos-dev/cogos](https://github.com/cogos-dev/cogos). The SRC formalism is the theoretical basis for the git branching discipline documented in `instantiations.md`.
+**SRC = Self-Referential Closure**: a mathematical structure characterizing the conditions under which a self-referential system maintains an accurate, self-sustaining model of its own dynamics. A system achieves closure when its internal description X̂ tracks the external signal X well enough that the description controls the construction of the system and the system maintains the description, stabilizing into the eigenform condition φ(s\*) = s\*. This directory contains the published SRC mathematics and cross-domain instantiations that operationally ground the myrgic decentralized build-deploy-sync architecture at [https://github.com/myrgic/cogos](https://github.com/myrgic/cogos). The SRC formalism is the theoretical basis for the git branching discipline documented in `instantiations.md`.
 
 ## Contents
 
@@ -12,7 +12,7 @@
 
 ## Scope
 
-This directory contains the SRC Model dynamical equations, proven properties of the model (τ₁, a = 6, θ-invariance) scoped to the symmetric-coupling case, and cross-domain instantiations that exhibit SRC structure, drawn from established literature and CogOS operational experience. The broader theoretical framework that scaffolds SRC remains internal to the cogos-dev project, following the convention established in [research/README.md](../README.md): this repository contains public architecture research; it does not contain the full theoretical framework or private workspace internals.
+This directory contains the SRC Model dynamical equations, proven properties of the model (τ₁, a = 6, θ-invariance) scoped to the symmetric-coupling case, and cross-domain instantiations that exhibit SRC structure, drawn from established literature and CogOS operational experience. The broader theoretical framework that scaffolds SRC remains internal to the myrgic project, following the convention established in [research/README.md](../README.md): this repository contains public architecture research; it does not contain the full theoretical framework or private workspace internals.
 
 ## Audience
 

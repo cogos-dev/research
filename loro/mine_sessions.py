@@ -14,9 +14,12 @@ This is the real training signal -- actual agent behavior recorded in
 tool call history. Output is consumed by prepare.py (task C3).
 
 Usage:
-    python mine_sessions.py --sessions-dir ~/.claude/projects/-Users-slowbro-workspaces-cog/
+    python mine_sessions.py --sessions-dir ~/.claude/projects/<your-cog-workspace-slug>/
     python mine_sessions.py --sessions-dir ~/.claude/projects/ --recursive
     python mine_sessions.py --help
+
+The workspace slug is derived from the COGOS_WORKSPACE path by stripping the leading
+slash and replacing remaining slashes with dashes. Override with CLAUDE_SESSION_ARCHIVE_SLUG.
 """
 
 import os
@@ -652,10 +655,17 @@ def main():
     parser = argparse.ArgumentParser(
         description="Mine Claude Code session transcripts for LRAT-style training triples"
     )
+    _cogos_workspace = os.environ.get(
+        "COGOS_WORKSPACE", os.path.join(os.path.expanduser("~"), "workspaces", "cog")
+    )
+    _default_slug = os.environ.get(
+        "CLAUDE_SESSION_ARCHIVE_SLUG",
+        _cogos_workspace.lstrip("/").replace("/", "-"),
+    )
     parser.add_argument(
         "--sessions-dir",
         type=str,
-        default=os.path.expanduser("~/.claude/projects/-Users-slowbro-workspaces-cog/"),
+        default=os.path.join(os.path.expanduser("~"), ".claude", "projects", _default_slug) + "/",
         help="Directory containing session JSONL files",
     )
     parser.add_argument(

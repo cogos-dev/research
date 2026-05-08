@@ -27,7 +27,7 @@ Binary formats:
     num_chunks * dim * 4 bytes: float32 data (row-major, little-endian)
 
 Usage:
-    cd apps/cogos-v3/autoresearch
+    cd apps/cogos/autoresearch
     uv run trm_export.py
     uv run trm_export.py --output-dir /path/to/output
 """

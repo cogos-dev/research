@@ -436,7 +436,7 @@ def load_signals(workspace_root: str) -> list[dict]:
     Returns list of signal dicts, each augmented with a 'weight' field
     derived from LRAT-inspired signal type weighting.
     """
-    autoresearch_dir = os.path.join(workspace_root, "apps", "cogos-v3", "autoresearch")
+    autoresearch_dir = os.path.join(workspace_root, "apps", "cogos", "autoresearch")
     signals_dir = os.path.join(autoresearch_dir, "training-signals", "signals")
     legacy_jsonl = os.path.join(autoresearch_dir, "training-signals.jsonl")
 
@@ -589,7 +589,7 @@ def _normalize_signal_path(file_path: str, workspace_root: str) -> set[str]:
     Generate all candidate normalized paths from a signal file path.
 
     Handles:
-      - Absolute paths from multiple workspace roots (cog, cogos, cogos-dev, etc.)
+      - Absolute paths from multiple workspace roots (cog, cogos, myrgic, etc.)
       - Worktree paths (.claude/worktrees/<name>/X -> X)
       - .agents/skills/ -> .claude/skills/ rename
       - memory/X -> .cog/mem/ basename search
@@ -606,15 +606,21 @@ def _normalize_signal_path(file_path: str, workspace_root: str) -> set[str]:
 
     # Strip common absolute prefixes (with trailing slash to avoid partial matches)
     home = os.path.expanduser("~")
+    cogos_workspace = os.environ.get("COGOS_WORKSPACE", os.path.join(home, "workspaces", "cog"))
+    myrgic_repos_root = os.environ.get("MYRGIC_REPOS_ROOT", os.path.join(home, "workspaces", "myrgic"))
+    # Derive the Claude Code session-archive slug from COGOS_WORKSPACE:
+    #   strip leading slash, replace remaining slashes with dashes.
+    # Override by setting CLAUDE_SESSION_ARCHIVE_SLUG in the environment.
+    _default_slug = cogos_workspace.lstrip("/").replace("/", "-")
+    claude_session_slug = os.environ.get("CLAUDE_SESSION_ARCHIVE_SLUG", _default_slug)
     abs_prefixes = [
         os.path.join(home, "cog-workspace") + "/",
-        os.path.join(home, "workspaces", "cog") + "/",
+        cogos_workspace.rstrip("/") + "/",
         os.path.join(home, "workspaces", "cogos") + "/",
-        os.path.join(home, "workspaces", "cogos-dev", "cogos") + "/",
-        os.path.join(home, "workspaces", "cogos-dev") + "/",
+        myrgic_repos_root.rstrip("/") + "/cogos/",
+        myrgic_repos_root.rstrip("/") + "/",
         os.path.join(home, "claw-workspace") + "/",
-        os.path.join(home, ".claude", "projects", "-Users-slowbro-workspaces-cog") + "/",
-        os.path.join(home, ".claude", "projects", "-Users-slowbro-cog-workspace") + "/",
+        os.path.join(home, ".claude", "projects", claude_session_slug) + "/",
         os.path.join(home, ".openclaw", "workspace") + "/",
     ]
     for prefix in abs_prefixes:
@@ -639,11 +645,11 @@ def _normalize_signal_path(file_path: str, workspace_root: str) -> set[str]:
         idx = file_path.index(".agents/skills/")
         candidates.add(".claude/skills/" + file_path[idx + len(".agents/skills/"):])
 
-    # /private/tmp/claude-501/ sandbox paths — try to extract workspace-relative path
-    if file_path.startswith("/private/tmp/claude-501/"):
-        # Pattern: /private/tmp/claude-501/-Users-slowbro-workspaces-cog/<session>/...
-        # The session ID and task dirs are not useful, but sometimes the path
-        # contains workspace-relative files. Skip these — they are task outputs.
+    # /private/tmp/ sandbox paths — try to extract workspace-relative path.
+    # Pattern: /private/tmp/<sandbox>/<claude-session-slug>/<session>/...
+    # The session ID and task dirs are not useful, but sometimes the path
+    # contains workspace-relative files. Skip these — they are task outputs.
+    if file_path.startswith("/private/tmp/"):
         pass
 
     return candidates
