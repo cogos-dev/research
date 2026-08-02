@@ -1,19 +1,19 @@
 # Contributing to CogOS Research
 
-Thanks for your interest. This repo holds the public research underlying CogOS — the EA/EFM thesis, the LoRO framework, and proof-of-concept experiments.
+Thanks for your interest. This repo holds the public research underlying CogOS (the EA/EFM thesis, the LoRO framework, and proof-of-concept experiments).
 
 ## What contributions are welcome
 
 - **Clarifications and corrections** to existing theses and frameworks
 - **Prior-art citations** that contextualize or challenge claims
 - **PoC experiments** that test framework predictions empirically
-- **Typos, formatting, link rot** — always welcome
+- **Typos, formatting, link rot.** Always welcome
 
 ## What contributions need discussion first
 
 - **Framework-level changes** to the EA/EFM thesis or LoRO framework
-- **New theoretical claims** — open an issue first with the thesis sketch
-- **Large literature-review additions** — scope-check via issue before investing effort
+- **New theoretical claims.** Open an issue first with the thesis sketch
+- **Large literature-review additions.** Scope-check via issue before investing effort
 
 Open a [Feature Request](https://github.com/myrgic/research/issues/new?template=feature.yml) to propose the shape of a large change before drafting it.
 

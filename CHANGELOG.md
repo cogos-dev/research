@@ -17,7 +17,7 @@ Commit-message convention: [Conventional Commits](https://www.conventionalcommit
 ### Fixed
 
 <!--
-Release template — copy this block, bump the version, date it, and move
+Release template. Copy this block, bump the version, date it, and move
 Unreleased entries into the new release section:
 
 ## [X.Y.Z] - YYYY-MM-DD

@@ -9,8 +9,9 @@ Theoretical foundations, architecture research, and proof-of-concept experiments
 | Document | Description |
 |----------|-------------|
 | [eaefm/thesis.md](eaefm/thesis.md) | **EA/EFM Thesis** -- Externalized Attention and Executive Function Modulation. The core argument: the substrate thinks, the model generates, and quality is a function of boundary quality. |
-| [loro/framework.md](loro/framework.md) | **LoRO Framework** -- Low-Rank Observer as a unified abstraction connecting PLE (Per-Layer Embeddings), LoRA (Low-Rank Adaptation), and TRM (Tiny Recursive Model). Three mechanisms, one pattern, operating at different time scales. |
-| `poc/` | Proof-of-concept experiments (coming soon) |
+| [src/README.md](src/README.md) | **SRC (Self-Referential Closure)** -- the published mathematics for the eigenform fixed point, plus cross-domain instantiations (git branching, molecular biology, blockchain state management). |
+| [loro/framework.md](loro/framework.md) | **LoRO Framework** -- Low-Rank Observer as a unified abstraction connecting PLE (Per-Layer Embeddings), LoRA (Low-Rank Adaptation), and TRM (Tiny Recursive Model). Three mechanisms, one pattern, operating at different time scales. See [loro/PIPELINE.md](loro/PIPELINE.md) for the training pipeline walkthrough. |
+| [poc/](poc/) | Proof-of-concept experiments: idle-GPU inference cascades and live semantic-coherence validation. |
 | `papers/` | Academic papers and preprints (coming soon) |
 
 ## What this is
@@ -29,11 +30,11 @@ This is public architecture research related to CogOS. It does not contain the f
 
 ## Related projects
 
-- [cogos](https://github.com/myrgic/cogos) -- The kernel — continuous process daemon with foveated context and multi-provider routing
-- [constellation](https://github.com/myrgic/constellation) -- Distributed trust — identity as temporal coherence, O(1) mutual verification
-- [mod3](https://github.com/myrgic/mod3) -- Modality bus — translates between thinking and acting, voice-first
-- [skills](https://github.com/myrgic/skills) -- Plugin marketplace — Agent Skills across workflow, research, voice, and dev tools
-- [charts](https://github.com/myrgic/charts) -- Deployment — Helm charts + Docker Compose
+- [cogos](https://github.com/myrgic/cogos) -- The kernel (continuous process daemon with foveated context and multi-provider routing)
+- [constellation](https://github.com/myrgic/constellation) -- Distributed trust (identity as temporal coherence, O(1) mutual verification)
+- [mod3](https://github.com/myrgic/mod3) -- Modality bus (translates between thinking and acting, voice-first)
+- [skills](https://github.com/myrgic/skills) -- Plugin marketplace (Agent Skills across workflow, research, voice, and dev tools)
+- [charts](https://github.com/myrgic/charts) -- Deployment (Helm charts + Docker Compose)
 - [desktop](https://github.com/myrgic/desktop) -- [ARCHIVED] Native macOS app -- kernel management, terminal, dashboard
 - [openclaw-plugin](https://github.com/myrgic/openclaw-plugin) -- [ARCHIVED] OpenClaw integration (how it CONNECTS)
 
