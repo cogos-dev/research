@@ -33,7 +33,7 @@ This is public architecture research related to CogOS. It does not contain the f
 - [cogos](https://github.com/myrgic/cogos) -- The kernel (continuous process daemon with foveated context and multi-provider routing)
 - [constellation](https://github.com/myrgic/constellation) -- Distributed trust (identity as temporal coherence, O(1) mutual verification)
 - [mod3](https://github.com/myrgic/mod3) -- Modality bus (translates between thinking and acting, voice-first)
-- [skills](https://github.com/myrgic/skills) -- Plugin marketplace (Agent Skills across workflow, research, voice, and dev tools)
+- [plugins](https://github.com/myrgic/plugins) -- Plugin marketplace (Agent Skills across workflow, research, voice, and dev tools)
 - [charts](https://github.com/myrgic/charts) -- Deployment (Helm charts + Docker Compose)
 - [desktop](https://github.com/myrgic/desktop) -- [ARCHIVED] Native macOS app -- kernel management, terminal, dashboard
 - [openclaw-plugin](https://github.com/myrgic/openclaw-plugin) -- [ARCHIVED] OpenClaw integration (how it CONNECTS)
