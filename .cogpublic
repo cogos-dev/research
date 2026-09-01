@@ -1,0 +1,58 @@
+# .cogpublic — Public release gate for myrgic/research
+# Defines what must never cross the boundary outward.
+#
+# ENFORCED BY: the org-level Public Release Gate workflow
+#   (myrgic/.github/.github/workflows/public-release-gate.yml), run in CI on
+#   every PR. Locally, from a checkout of myrgic/.github:
+#     python3 scripts/cogpublic-guard.py --root /path/to/research
+#
+# WHY THIS REPO HAS ONE: research notes and PoC code are drafted inside the
+# operator's environment, the content class behind every prior org leak
+# (mod3 #138/#142/#146, cogos #588). A dry-run of the cogos baseline on
+# 2026-08-31 found ZERO hits (43 files scanned).
+
+version: 1
+
+content_guards:
+  - pattern: "/Users/slowbro"
+    description: "Hardcoded operator home directory (macOS)"
+  - pattern: "/home/slowbro"
+    description: "Hardcoded operator home directory (Linux)"
+  - pattern: "-Users-slowbro-"
+    description: "Claude project path encoding"
+  - pattern: "192404964621025291"
+    description: "Personal Discord user snowflake"
+  - pattern: 'sk-[a-zA-Z0-9]{20,}'
+    description: "OpenAI API key pattern"
+  - pattern: 'ghp_[a-zA-Z0-9]{20,}'
+    description: "GitHub personal access token"
+  - pattern: 'xoxb-[a-zA-Z0-9]+'
+    description: "Slack bot token"
+  - pattern: '@gmail\.com|@yahoo\.com|@hotmail\.com'
+    description: "Personal email address (git author emails exempt)"
+
+# DELIBERATELY NOT GUARDED, verified 2026-08-31 — recorded so the next
+# person does not "helpfully" add them:
+#
+#   "Snowflake" (the word) — loro/scripts/embed-geometry.py:19 references
+#     the HuggingFace model 'Snowflake/snowflake-arctic-embed-m-v2.0'.
+#     The Discord-snowflake guard above is a specific numeric literal and
+#     does not collide; a word-level guard would flag a public model ID.
+#
+#   paper/author names — papers/ cites real researchers by name; that is
+#     scholarship, not a leak. No name-based guard is appropriate here.
+#
+# An over-broad guard that fires on legitimate content is worse than no
+# guard: it gets suppressed, and the suppression takes the real findings
+# with it.
+
+exclude:
+  - vendor/**
+  - node_modules/**
+  - .venv/**
+  - uv.lock
+  - "*.pdf"
+  - "*.onnx"
+  - "*.pt"
+  - "*.safetensors"
+  - "*.gguf"
